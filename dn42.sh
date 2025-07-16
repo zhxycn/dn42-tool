@@ -383,13 +383,19 @@ EOF
 
 show_dn42_info(){
     echo
-    echo "Here is your DN42 information:"
-    echo
-    echo "AS: AS${DN42_ASN}"
-    echo "IPv4 CIDR: ${DN42_IPV4_CIDR}"
-    echo "IPv4: ${DN42_IPV4}"
-    echo "IPv6 CIDR: ${DN42_IPV6_CIDR}"
-    echo "IPv6: ${DN42_IPV6}"
+
+    if ! get_dn42_info; then
+        echo "DN42 information not found. Please set up first."
+    else
+        echo "Here is your DN42 information:"
+        echo
+        echo "AS: AS${DN42_ASN}"
+        echo "IPv4 CIDR: ${DN42_IPV4_CIDR}"
+        echo "IPv4: ${DN42_IPV4}"
+        echo "IPv6 CIDR: ${DN42_IPV6_CIDR}"
+        echo "IPv6: ${DN42_IPV6}"
+    fi
+    
     echo
     echo "Press any key to continue..."
     read -n 1 -s
